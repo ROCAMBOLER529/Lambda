@@ -1,0 +1,71 @@
+1)  ( λx.( ( λy.y ) x ) ) z --> x=ligada y=ligada z=libre
+	( ( λy.y ) z ) = B
+	z = B
+
+	( λx.( ( λy.y ) x ) ) z
+	( λx.( x ) ) z = B
+	z = B
+
+2)  ( λx.λy.x y ) ( z y ) --> x=ligada y=ligada/libre z=libre
+	( λx y.x y ) ( z y ) = B
+	( λy.z y) y = B
+	z y = B
+
+	( λx.λy.x y ) ( z y )
+	( λy.z y ) y = B
+	z y = B
+
+3)  ( λx.λy.x ) x y --> x=ligada/libre y=ligada/libre
+	( λx y.x ) x y
+	( λu y.u ) x y = A
+	( λy.x ) y = B
+	x = B
+
+	( λx y.x ) x y
+	( λu y.u ) x y = A
+	( λy.x ) y = B
+	x = B
+
+4)  ( λx.( ( λz.z x ) ( λx.x ) ) ) y --> x=ligada/libre y=libre z=ligada
+	( λx.( ( λz.z x ) ( λx.x ) ) ) y
+	( λx.( ( λx.x ) x ) ) y = B
+	( λx.( ( λu.u ) x ) ) y = A
+	( λx.x ) y = B
+	y = B
+
+	( λx.( ( λz.z x ) ( λx.x ) ) ) y
+	( λx.( ( λx.x ) x ) ) y = B
+	( λx.( ( λu.u ) x ) ) y = A
+	( λx.x ) y = B
+	y = B
+	
+5)  ( λx.( ( λy.x y ) z ) ) ( λx.x y ) --> x=ligada y=ligada/libre z=
+	( λx.( ( λu.x u ) z ) ) ( λx.x y ) = A
+	( λx.x z ) ( λx.x y ) = B
+	( λx.x y ) z = B
+	z y = B
+
+	( λx.( ( λu.x u ) z ) ) ( λx.x y ) = A
+	( λx.x z ) ( λx.x y ) = B
+	( λx.x y ) z = B
+	z y = B
+	
+6)  ( ( λy.( λx.( ( λx.λy.x ) x ) ) y ) M ) N --> x=ligada/libre y=ligada/libree
+	( ( λy.( λx.( ( λx y.x ) x) ) y ) M ) N = B
+	( ( λx.( ( λx y.x ) x) ) M ) N = B
+	( ( λx y.x ) x ) N = B
+	( ( λu y.u ) x ) N = A
+	( λy.x ) N = B
+	x = B
+
+	( ( λy.( λx.( ( λx.λy.x ) x ) ) y ) M ) N
+	( ( λy.( λx.( ( λu.λy.u ) x ) ) y ) M ) N = A
+	( ( λy.( λx.( λy.x ) ) y ) M ) N = B
+	( ( λy.( λy.x ) ) M ) N = B
+	( λy.x ) N = B
+	x = B
+	
+7)  ( λx.λy.λx.x y z ) (λx.λy.y) M N --> x=ligada y=ligada z=libre
+	( λx.λy.λx.x y z ) (λx.λy.y) M N = A
+	
+8)  ( ( λx.( λy.λz.z ) x ) ( ( λx.x x x ) ( λx.x x x ) ) ) x -> x=ligada/libre y=ligada? z=ligada
