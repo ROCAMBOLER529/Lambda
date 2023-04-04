@@ -1,0 +1,97 @@
+4)
+a) C I = λy z.z y
+(λx y z.x z y)(λx.x)
+λy z. (λx.x) z y 
+λy z.z y
+
+b) K I = O
+(λx y.x)(λx.x) = (λx y.y)
+
+c) S (K S) K = B
+(λx y z.x z (y z))((λx y.x)(λx y z.x z (y z)))(λx y.x) = λx y z.x (y z)
+(λx y z.x z (y z))(λy.(λx y z.x z (y z)))(λx y.x)
+
+5)	NOR
+	Not Or
+	(λp.p False True) (λp.λq.p True q)
+	(λp.p (λx.λy.y) (λx.λy.x)) (λp.λq.p (λx.λy.x) q)
+
+	NAND
+	Not And
+	(λp.p False True) (λp.λq.p q False)
+	(λp.p (λx.λy.y) (λx.λy.x)) (λp.λq.p q (λx.λy.y))
+
+	XNOR
+	Not Xor
+	(λp.p False True) (λp.λq.p (q False True) q)
+	(λp.p (λx.λy.y) (λx.λy.x)) (λp.λq.p (q (λx.λy.y) (λx.λy.x)) q)
+
+6)
+a)  Pred 5 = 4
+	(λn.λf.λx.n (λg.λh.h (g f)) (λu.x) (λu.u)) (λf.λx.f (f (f (f (f x))))) = λf.λx.f (f (f (f x)))
+	λf x. (λf.λx.f (f (f (f (f x))))) (λg.λh.h (g f)) (λu.x) (λu.u)
+	λx.(λf x.f (f (f (f (f x)))))
+	λx.(λx.f (f (f (f x))))
+	
+b)  IsZero 2 = False
+	(λn.n (λz.(λx.λy.y)) (λx.λy.x)) (λf.λx.f (f x)) =  λx.λy.y
+	((λz.(λx.λy.y)) (λx.λy.x)) (λf.λx.f (f x))
+	???
+	λx.λy.y
+
+c)  Add 2 3 = 5
+	(λm.λn.λf.λx.m f (n f x)) (λf.λx.f (f x)) (λf.λx.f (f (f x))) = λf.λx.f (f (f (f (f x))))
+	(λn f x.(λf.λx.f (f x)) f (n f x)) (λf.λx.f (f (f x)))
+	λf x.(λf.λx.f (f x)) f ((λf.λx.f (f (f x))) f x)
+	λf x.(λf.λx.f (f x)) f (f (f (f x)))
+	λf x.f (f (f (f (f x))))
+
+d)  Sub 3 1 = 2
+	(λm.λn.n (λn.λf.λx.n (λg.λh.h (g f)) (λu.x) (λu.u)) m) (λf.λx.f (f (f x))) (λf.λx.f x) = λf.λx.f (f x)
+	(λn.n (λn.λf.λx.n (λg.λh.h (g f)) (λu.x) (λu.u)) (λf.λx.f (f (f x)))) (λf.λx.f x)
+	(λf.λx.f x) (λn.λf.λx.n (λg.λh.h (g f)) (λu.x) (λu.u)) (λf.λx.f (f (f x)))
+	(λx.(λn.λf.λx.n (λg.λh.h (g f)) (λu.x) (λu.u)) x) (λf.λx.f (f (f x)))
+	(λn.λf.λx.n (λg.λh.h (g f)) (λu.x) (λu.u)) (λf.λx.f (f (f x)))
+	(λf x.(λf.λx.f (f (f x))) (λg.λh.h (g f)) (λu.x) (λu.u))
+	(λf x.(λf.λx.f (f (f x))) (λh.h ((λu.x) f)) (λu.u))
+	(λf x.(λf.λx.f (f (f x))) (λu.u)((λu.x) f))
+	(λf x.(λf.λx.f (f (f x))) ((λu.x) f))
+	(λf x.(λx.((λu.x) f)(((λu.x) f)(((λu.x) f) x))))
+	(λf x.(λx.((λu.x) f)(((λu.x) f)(f x))))
+	???
+	λf.λx.f (f x)
+
+e)  Mul 2 3 = 6
+	(λm.λn.λf.λx.m (n f) x) (λf.λx.f (f x)) (λf.λx.f (f (f x))) =  λf.λx.f (f (f (f (f (f x)))))
+	(λn.λf.λx.(λf.λx.f (f x)) (n f) x) (λf.λx.f (f (f x)))
+	(λf.λx.(λf.λx.f (f x)) ((λf.λx.f (f (f x))) f) x)
+	(λf.λx.(λx.((λf.λx.f (f (f x))) f) (((λf.λx.f (f (f x))) f) x)) x)
+	(λf.λx.((λf.λx.f (f (f x))) f) (((λf.λx.f (f (f x))) f) x))
+	(λf.λx.(λx.f (f (f x))) (((λf.λx.f (f (f x))) f) x)))
+	(λf.λx.(λx.f (f (f x))) (λx.f (f (f x)) x)))
+	(λf.λx.(λx.f (f (f x))) (f (f (f x))))
+	(λf.λx.f (f (f (f (f (f x))))))
+
+f)  Div 6 2 = 3
+	(λn.(Y (λc.λn.λm.λf.λx.(λd.If (IsZero d) (0 f x) (f (c d m f x))) (Sub n m))) (Succ n)) (λf.λx.f (f (f (f (f (f x)))))) (λf.λx.f (f x)) = λf.λx.f (f (f x))
+
+	IsZero d
+	(λn.n (λz.(λx.λy.y)) (λx.λy.x)) d
+	(d (λz.(λx.λy.y)) (λx.λy.x))
+
+	(λn.(Y (λc.λn.λm.λf.λx.(If ((Sub n m) (λz.(λx.λy.y)) (λx.λy.x)) (0 f x) (f (c (Sub n m) m f x))))) (Succ n)) (λf.λx.f (f (f (f (f (f x)))))) (λf.λx.f (f x))
+	(λn.(Y (λc.λn.λm.λf.λx.((λp.λq.λr.p q r) ((Sub n m) (λz.(λx.λy.y)) (λx.λy.x)) (0 f x) (f (c (Sub n m) m f x))))) (Succ n)) (λf.λx.f (f (f (f (f (f x)))))) (λf.λx.f (f x))
+	(λn.(Y (λc.λn.λm.λf.λx.((λq.λr.((Sub n m) (λz.(λx.λy.y)) (λx.λy.x)) q r) (0 f x) (f (c (Sub n m) m f x))))) (Succ n)) (λf.λx.f (f (f (f (f (f x)))))) (λf.λx.f (f x))
+	(λn.(Y (λc.λn.λm.λf.λx.((λr.((Sub n m) (λz.(λx.λy.y)) (λx.λy.x)) (0 f x) r) (f (c (Sub n m) m f x))))) (Succ n)) (λf.λx.f (f (f (f (f (f x)))))) (λf.λx.f (f x))
+	(λn.(Y (λc.λn.λm.λf.λx.(((Sub n m) (λz.(λx.λy.y)) (λx.λy.x)) (0 f x) (f (c (Sub n m) m f x))))) (Succ n)) (λf.λx.f (f (f (f (f (f x)))))) (λf.λx.f (f x))
+
+
+g)  Pow 2 3 = 8
+	(λm.λn.λf.λx.n m f x) (λf.λx.f (f x)) (λf.λx.f (f (f x)))
+	(λn.λf.λx.n (λf.λx.f (f x)) f x) (λf.λx.f (f (f x)))
+	(λf.λx.(λf.λx.f (f (f x))) (λf.λx.f (f x)) f x)
+	(λf.λx.(λx.(λf.λx.f (f x)) ((λf.λx.f (f x)) ((λf.λx.f (f x)) x))) f x)
+	(λf.λx.(λx.(λf.λx.f (f x)) ((λf.λx.f (f x)) ((λf.λx.f (f x)) x))) f x)
+
+h) Fibo 6 = 8
+i) Fact 3 = 6
