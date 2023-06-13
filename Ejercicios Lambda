@@ -1,0 +1,134 @@
+1)a)
+(λx.(λy.(λz.((x z) (y z)))))
+λx.λy.λz.(x z) y z
+
+b)
+(((a b) (c d)) ((e f) (g h)))
+((a b) c d) (e f) g h
+
+c)
+(λx.(λy.(y x)) (λv.v) z u) (λw.w)
+
+2)a)
+xxxx
+x x x x
+
+b)
+λx.x λy.y
+λx.(x) λy.y 
+
+c)
+λx.(x λy.y x x) x
+λx.(x λy.(y x) x) x
+
+3)a)
+( λx.( ( λy.y ) x ) ) z --> x ligada, y ligada, z libre
+( λx.x ) z
+z
+
+b)
+( λx.λy.x y ) ( z y ) --> x ligada, y ligada, z libre
+
+
+c)
+( λx.λy.x ) x y --> x ligada, y ligada
+( λz y.z ) x y
+( λy.x ) y
+
+d)
+( λx.( ( λz.z x ) ( λx.x ) ) ) y --> x ligada/libre, y libre, z ligada
+( λx.( λx.x ) x ) y
+( λx.x ) x y
+x y
+
+e)
+( λx.( ( λy.x y ) z ) ) ( λx.x y ) --> x ligada, y ligda/libre, z libre
+( λx.( x z ) ) ( λx.x y )
+( λx.( x z ) ) y
+y z
+
+f)
+( ( λy.( λx.( ( λx.λy.x ) x ) ) y ) M ) N --> x ligada/libre, y ligada/libre, M libre, N libre
+( ( λy.( λx.( ( λz.λy.z ) x ) ) y ) M ) N
+( ( λy.( λx.( λy.x ) y ) M ) N
+( ( λx.( λy.x ) M ) N
+
+g)
+( λx.λy.λx.x y z ) ( λx.λy.y ) M N --> x ligada, y ligada, z libre, M libre, N libre
+( λy.λx.( λx.λy.y ) y z ) M N
+( λx.( λx.λy.y ) M z) N
+( λx.( λx.M ) z) N 
+
+h)
+( ( λx.( λy.λz.z ) x ) ( ( λx.x x x ) ( λx.x x x ) ) ) x --> x ligada/libre, y ligada, z ligada
+( λx.( λy.λz.z ) ( ( λx.x x x ) ( λx.x x x ) ) x
+( λx.( λy.λz.z ) ( ( λx.( λx.x x x ) ( λx.x x x ) ( λx.x x x ) ) ) x
+NaN
+
+4)a) C I = λy z.z y
+( λx.λy.λz.x z y ) ( λx.x ) = λy z.z y
+( λy.λz.( λx.x ) z y ) = λy z.z y
+( λy.λz.z y ) = λy z.z y
+
+b) K I = O
+( λx.λy.x ) ( λx.x ) = λx.λy.y
+( λz.λy.z ) ( λx.x ) = λx.λy.y
+( λy.( λx.x ) ) = λx.λy.y
+
+c)  S (K S) K = B
+λx.λy.λz.x z (y z) ( ( λx.λy.x ) ( λx.λy.λz.x z (y z) ) ) λx.λy.x = λx.λy.λz.x (y z)
+λx.λy.λz.x z (y z) ( λy.( λx.λy.λz.x z (y z) ) ) λx.λy.x = λx.λy.λz.x (y z)
+λy.λz.( λy.( λx.λy.λz.x z (y z) ) z (y z) ) λx.λy.x
+
+6)a) Pred 5 = 4
+( λn.λf.λx.n (λg.λh.h (g f)) (λu.x) (λu.u) ) ( λf.λx.f (f (f (f (f x)))) )
+( λf.λx.( λf.λx.f (f (f (f (f x)))) ) (λg.λh.h (g f)) (λu.x) (λu.u) )
+( λf.λx.( λx.(f (f (f (f x)))) ) (λg.λh.h (g f)) (λu.x) (λu.u) )
+( λf.λx.(f (f (f (f (λg h.h (g f)))))) (λu.x) (λu.u) )
+b)  IsZero 2 = False
+    ( λn.n (λz.(λx.λy.y)) (λx.λy.x) ) ( λf.λx.f (f x) )
+    λf.λx.f (f x) (λz.(λx.λy.y)) (λx.λy.x) 
+    λx.(λz.(λx.λy.y)) ((λz.(λx.λy.y)) x) (λx.λy.x)
+    (λz.(λx.λy.y)) (((λz.(λx.λy.y)) x) (λx.λy.x))
+    (((λz.(λx.λy.y)) x) (λx.λy.x))
+    λx.λy.x
+
+c)  Add 2 3
+    ( λm.λn.λf.λx.m f (n f x) ) λf.λx.f (f x) λf.λx.f (f (f x))
+    ( λn.λf.λx.λf.(λx.f (f x)) f (n f x) ) λf.λx.f (f (f x))
+    λf.λx.(λx.f (f x)) (λf.λx.f (f (f x) x) f x)
+    λf.λx.(λx.f (f (λf.λx.f (f (f x) x) f x)))
+    λf.λx.(λx.f (f (λx.f (f (f x) x) x)))
+    λf.λx.(λx.f (f (f (f (f x) x))))
+    λf.λx.(f (f (f (f (f x))))) = 5
+
+d)  Sub 3 1 = 2
+    ( λm.λn.n (λn.λf.λx.n (λg.λh.h (g f)) (λu.x) (λu.u)) m ) ( λf.λx.f (f (f x)) ) ( λf.λx.f x )
+    ( λn.n (λn.λf.λx.n (λg.λh.h (g f)) (λu.x) (λu.u)) (λf.λx.f (f (f x))) )  ( λf.λx.f x )
+    ( λf.λx.f x ) (λn.λf.λx.n (λg.λh.h (g f)) (λu.x) (λu.u)) (λf.λx.f (f (f x)))  
+------
+
+Orden Normal
+( λx y. y x ) ( ( λx.x )  ( ( λz.w ) v ) ) ( ( λy.y ) u ) --> x ligada, y ligada, z ligada, v libre, u libre, w libre
+( ( λy.y ) u ) ( ( λx.x )  ( ( λz.w ) v ) )
+u ( ( λx.x )  ( ( λz.w ) v ) )
+u ( ( λz.w ) v )
+
+Orden Aplicativo
+( λx y. y x ) ( ( λx.x )  ( ( λz.w ) v ) ) ( ( λy.y ) u ) --> x ligada, y ligada, z ligada, v libre, u libre, w libre
+( λx y. y x ) ( ( λz.w ) v ) ( ( λy.y ) u )
+( λx y. y x ) ( ( λz.w ) v ) u
+u ( ( λz.w ) v )
+
+Parcial
+Orden Normal
+( λx.a ((λy.y) r) ((λa.g) r) ) (λxy.y x)
+a ((λy.y) r) ((λa.g) r)
+a ((λy.y) r) ((λa.g) u)
+a r ((λa.g) u)
+
+Orden Aplicativo
+( λx.a ((λy.y) r) ((λa.g) r) ) (λxy.y x)
+( λx.a r ((λa.g) r) ) (λxy.y x)
+( λx.a r ((λa.g) u) ) (λxy.y x)
+a r ((λa.g) u)
